@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Placeholder for future context integration
-// e.g., const { isAuthenticated, user } = useContext(AuthContext);
+
 
 const navLinkStyle = {
   color: '#fff',
@@ -21,7 +20,7 @@ const navLinkHover = {
 };
 
 const Home = () => {
-  // For hover effect with inline styles, use onMouseEnter/onMouseLeave
+  // For hover effect with inline styles
   const [hovered, setHovered] = React.useState('');
 
   const handleMouseEnter = (name) => setHovered(name);
@@ -118,7 +117,7 @@ const Home = () => {
                 boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
                 fontWeight: 500,
                 fontSize: '1.1rem',
-                color: '#000', // <-- Set text color to black
+                color: '#000', 
               }}
             >
               {product.name} - {product.price}
