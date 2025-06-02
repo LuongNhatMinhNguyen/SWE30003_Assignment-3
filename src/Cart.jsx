@@ -152,7 +152,7 @@ const Cart = () => {
         Continue Shopping
       </Link>
       {cart.length === 0 ? (
-        <div style={{ color: '#555', marginTop: 40 }}>Your cart is empty.</div>
+        <div style={{ color: '#555', marginTop: 40 }}>Your cart is empty</div>
       ) : (
         <div style={{ width: '100%', maxWidth: 700 }}>
           {cart.map(item => {
