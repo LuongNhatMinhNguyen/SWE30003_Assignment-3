@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 import Home from './Home';
+import ProductList from './ProductList';
 
 function Placeholder() {
   return (
@@ -15,7 +15,7 @@ function Placeholder() {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
@@ -44,7 +44,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Placeholder />} />
           <Route path="/login" element={<Placeholder />} />
-          <Route path="/products" element={<Placeholder />} />
+          <Route path="/products" element={<ProductList />} />
           <Route path="/cart" element={<Placeholder />} />
           <Route path="/checkout" element={<Placeholder />} />
           <Route path="/profile" element={<Placeholder />} />
