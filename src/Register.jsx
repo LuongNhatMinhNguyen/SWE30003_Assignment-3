@@ -35,22 +35,18 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted with values:', form); // Debug: Log form values
-    // Basic validation
     if (!form.name || !form.email || !form.password || !form.address) {
-      console.log('Validation failed: Some fields are empty'); // Debug: Log validation failure
       alert('Please fill in all fields');
       return;
     }
     // Simulate registration (log to console)
     console.log('Registered user:', form);
-    // Show success message
+    // Save user to localStorage
+    localStorage.setItem('awe_user', JSON.stringify(form));
     setSuccess(true);
-    // Redirect to login after a short delay
     setTimeout(() => {
-      console.log('Navigating to /login'); // Debug: Confirm navigation
       navigate('/login');
-    }, 1000); // 1-second delay to show success message
+    }, 1000);
   };
 
   return (

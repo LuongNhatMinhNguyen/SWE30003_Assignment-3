@@ -35,11 +35,22 @@ const Login = () => {
       return;
     }
 
-    console.log('Login attempt:', form);
-    setSuccess(true);
-    setTimeout(() => {
-      navigate('/');
-    }, 1000);
+    // Get registered user from localStorage
+    const storedUser = JSON.parse(localStorage.getItem('awe_user'));
+    if (
+      storedUser &&
+      storedUser.email === form.email &&
+      storedUser.password === form.password
+    ) {
+      setSuccess(true);
+      setError('');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    } else {
+      setError('Invalid email or password');
+      setSuccess(false);
+    }
   };
 
   return (
