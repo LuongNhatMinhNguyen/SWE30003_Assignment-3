@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import Home from './Home';
 import ProductList from './ProductList';
+import Register from './Register'; 
 
 function Placeholder() {
   return (
@@ -42,7 +43,7 @@ function App() {
         </p>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Placeholder />} />
+          <Route path="/register" element={<Register />} /> 
           <Route path="/login" element={<Placeholder />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/cart" element={<Placeholder />} />
