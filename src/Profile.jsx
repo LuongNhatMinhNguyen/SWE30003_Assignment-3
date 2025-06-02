@@ -39,6 +39,11 @@ const Profile = () => {
     return p ? p.name : id;
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('awe_logged_in');
+    window.location.href = '/login'; 
+  }
+
   if (!customer) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
@@ -145,6 +150,26 @@ const Profile = () => {
         >
           Back to Home
         </a>
+        <button
+          onClick={handleLogout}
+          style={{
+            marginTop: 16,
+            background: '#d32f2f',
+            color: '#fff',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            border: 'none',
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            display: 'inline-block',
+            marginLeft: 8,
+          }}
+          onMouseOver={e => (e.target.style.background = '#b71c1c')}
+          onMouseOut={e => (e.target.style.background = '#d32f2f')}
+        >
+          Log Out
+        </button>
       </div>
     </div>
   );
