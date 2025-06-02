@@ -59,9 +59,9 @@ const Cart = () => {
 
   // Proceed to checkout
   const handleCheckout = () => {
-    // Simulate order creation
+    // order creation
     const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
-    const loggedInEmail = localStorage.getItem('awe_logged_in'); // You can set this on login
+    const loggedInEmail = localStorage.getItem('awe_logged_in'); 
     const customer = users.find(u => u.email === loggedInEmail);
 
     // 1. Create Order
@@ -103,7 +103,7 @@ const Cart = () => {
     receipts.push(receipt);
     localStorage.setItem('awe_receipts', JSON.stringify(receipts));
 
-    // Optionally clear cart after checkout
+    // Clear cart after checkout
     localStorage.setItem('awe_cart', '[]');
     setCart([]);
 

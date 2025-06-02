@@ -78,7 +78,6 @@ const Checkout = () => {
     setSubmitted(true);
   };
 
-  // Helper to get product name by id
   const getProductName = (id) => {
     const p = products.find((prod) => prod.id === id);
     return p ? p.name : id;
@@ -95,7 +94,7 @@ const Checkout = () => {
         alignItems: "center",
       }}
     >
-      {/* Show logged in user */}
+
       {customer && (
         <div style={{ marginBottom: 8, color: "#1976d2", fontWeight: 500 }}>
           Logged in as: {customer.name ? customer.name : customer.email}
@@ -113,7 +112,7 @@ const Checkout = () => {
             marginBottom: 32,
             minWidth: 340,
             maxWidth: 400,
-            color: "#000", // Set all text in receipt to black
+            color: "#000", 
           }}
         >
           <h3 style={{ color: "#000", marginBottom: 12 }}>Receipt</h3>

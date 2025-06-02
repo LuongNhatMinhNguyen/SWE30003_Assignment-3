@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
 const Profile = () => {
   const [customer, setCustomer] = useState(null);
   const [receipts, setReceipts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("awe_users") || "[]");
@@ -31,7 +33,11 @@ const Profile = () => {
       .then((res) => res.json())
       .then(setProducts)
       .catch(() => {});
-  }, []);
+
+    if (!localStorage.getItem("awe_logged_in")) {
+      navigate("/login"); // Redirect if not logged in
+    }
+  }, [navigate]);
 
   const getOrder = (orderId) => orders.find((o) => o.id === orderId);
   const getProductName = (id) => {
