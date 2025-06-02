@@ -6,6 +6,7 @@ import ProductList from './ProductList';
 import Register from './Register';
 import Login from './Login';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 function Placeholder() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Placeholder />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/profile" element={<Placeholder />} />
         </Routes>
       </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid'; // Install uuid with: npm install uuid
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -58,6 +59,60 @@ const Cart = () => {
 
   // Proceed to checkout
   const handleCheckout = () => {
+    // Simulate order creation
+    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    const loggedInEmail = localStorage.getItem('awe_logged_in'); // You can set this on login
+    const customer = users.find(u => u.email === loggedInEmail);
+
+    // 1. Create Order
+    const order = {
+      id: uuidv4(),
+      customerId: customer ? customer.id || customer.email : 'guest',
+      items: cart.map(item => ({
+        productId: item.productId,
+        quantity: item.quantity,
+      })),
+      total: total,
+      date: new Date().toISOString(),
+    };
+    const orders = JSON.parse(localStorage.getItem('awe_orders') || '[]');
+    orders.push(order);
+    localStorage.setItem('awe_orders', JSON.stringify(orders));
+
+    // 2. Create Invoice
+    const invoice = {
+      id: uuidv4(),
+      orderId: order.id,
+      total: order.total,
+      date: order.date,
+      customerId: order.customerId,
+    };
+    const invoices = JSON.parse(localStorage.getItem('awe_invoices') || '[]');
+    invoices.push(invoice);
+    localStorage.setItem('awe_invoices', JSON.stringify(invoices));
+
+    // 3. Create Receipt
+    const receipt = {
+      id: uuidv4(),
+      orderId: order.id,
+      total: order.total,
+      date: order.date,
+      customerId: order.customerId,
+    };
+    const receipts = JSON.parse(localStorage.getItem('awe_receipts') || '[]');
+    receipts.push(receipt);
+    localStorage.setItem('awe_receipts', JSON.stringify(receipts));
+
+    // Optionally clear cart after checkout
+    localStorage.setItem('awe_cart', '[]');
+    setCart([]);
+
+    // Log for assignment requirements
+    console.log('Order placed:', order);
+    console.log('Invoice created:', invoice);
+    console.log('Receipt created:', receipt);
+
+    // Navigate to checkout page
     navigate('/checkout');
   };
 
