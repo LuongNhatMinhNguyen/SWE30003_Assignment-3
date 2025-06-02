@@ -28,19 +28,15 @@ const Login = () => {
     setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) {
-      setError('Please enter both email and password');
-      return;
-    }
-
     const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
-    const found = users.find(
+    const user = users.find(
       (u) => u.email === form.email && u.password === form.password
     );
+    if (user) {
+      localStorage.setItem('awe_logged_in', form.email); // <-- Set logged in user
 
-    if (found) {
       setSuccess(true);
       setError('');
       setTimeout(() => {
@@ -65,7 +61,7 @@ const Login = () => {
       }}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         style={{
           background: '#fff',
           padding: '32px 28px',

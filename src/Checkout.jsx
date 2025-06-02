@@ -95,6 +95,13 @@ const Checkout = () => {
         alignItems: "center",
       }}
     >
+      {/* Show logged in user */}
+      {customer && (
+        <div style={{ marginBottom: 8, color: "#1976d2", fontWeight: 500 }}>
+          Logged in as: {customer.name ? customer.name : customer.email}
+        </div>
+      )}
+
       <h2 style={{ marginBottom: 24, color: "#1976d2" }}>Checkout</h2>
       {latestReceipt && latestOrder && (
         <div
