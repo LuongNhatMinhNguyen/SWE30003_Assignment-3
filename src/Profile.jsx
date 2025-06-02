@@ -127,6 +127,25 @@ const Profile = () => {
           })
         )}
       </div>
+      <div style={{ textAlign: "center", marginTop: 32 }}>
+        <a
+          href="/"
+          style={{
+            background: "#666",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            textDecoration: "none",
+            fontWeight: 500,
+            transition: "background 0.2s",
+            display: "inline-block",
+          }}
+          onMouseOver={e => (e.target.style.background = "#444")}
+          onMouseOut={e => (e.target.style.background = "#666")}
+        >
+          Back to Home
+        </a>
+      </div>
     </div>
   );
 };
