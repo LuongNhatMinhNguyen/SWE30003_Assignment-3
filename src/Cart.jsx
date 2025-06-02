@@ -22,7 +22,7 @@ const Cart = () => {
       .catch(() => setError('Failed to load products'));
   }, []);
 
-  // Helper: Get product details by id
+  //  Get product details by id
   const getProduct = (id) => products.find(p => p.id === id);
 
   // Update cart in localStorage and state
