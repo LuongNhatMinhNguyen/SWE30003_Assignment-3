@@ -39,6 +39,24 @@ const ProductList = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const handleAddToCart = (productId) => {
+    const cart = JSON.parse(localStorage.getItem('awe_cart') || '[]');
+    const item = cart.find(i => i.productId === productId);
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    if (item) {
+      // Only add if stock allows
+      if (item.quantity < product.stock) {
+        item.quantity += 1;
+      }
+    } else {
+      cart.push({ productId, quantity: 1 });
+    }
+    localStorage.setItem('awe_cart', JSON.stringify(cart));
+    alert('Added to cart!');
+  };
+
   return (
     <div
       style={{
@@ -65,11 +83,32 @@ const ProductList = () => {
             fontWeight: 600,
             fontSize: '1rem',
             transition: 'background 0.2s',
+            marginRight: 12,
           }}
           onMouseOver={e => (e.target.style.background = '#0056b3')}
           onMouseOut={e => (e.target.style.background = '#007bff')}
         >
           Back to Home
+        </Link>
+        <Link
+          to="/cart"
+          style={{
+            display: 'inline-block',
+            marginBottom: 20,
+            background: '#28a745',
+            color: '#fff',
+            padding: '10px 24px',
+            border: 'none',
+            borderRadius: 6,
+            textDecoration: 'none',
+            fontWeight: 600,
+            fontSize: '1rem',
+            transition: 'background 0.2s',
+          }}
+          onMouseOver={e => (e.target.style.background = '#1e7e34')}
+          onMouseOut={e => (e.target.style.background = '#28a745')}
+        >
+          Go to Cart
         </Link>
         <div style={{ display: 'flex', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
           <input
@@ -148,6 +187,24 @@ const ProductList = () => {
                 <div style={{ fontSize: '0.95rem', color: '#444' }}>
                   ({product.stock} in stock)
                 </div>
+                <button
+                  style={{
+                    marginTop: 10,
+                    background: '#007bff',
+                    color: '#fff',
+                    padding: '8px 16px',
+                    border: 'none',
+                    borderRadius: 5,
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'background 0.2s',
+                  }}
+                  onClick={() => handleAddToCart(product.id)}
+                  onMouseOver={e => (e.target.style.background = '#0056b3')}
+                  onMouseOut={e => (e.target.style.background = '#007bff')}
+                >
+                  Add to Cart
+                </button>
               </div>
             ))
           )}

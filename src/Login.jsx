@@ -35,13 +35,12 @@ const Login = () => {
       return;
     }
 
-    // Get registered user from localStorage
-    const storedUser = JSON.parse(localStorage.getItem('awe_user'));
-    if (
-      storedUser &&
-      storedUser.email === form.email &&
-      storedUser.password === form.password
-    ) {
+    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    const found = users.find(
+      (u) => u.email === form.email && u.password === form.password
+    );
+
+    if (found) {
       setSuccess(true);
       setError('');
       setTimeout(() => {

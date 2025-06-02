@@ -25,25 +25,34 @@ const Register = () => {
     address: '',
   });
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const updatedForm = { ...form, [e.target.name]: e.target.value };
-    console.log('Updated form state:', updatedForm); // Debug: Log state updates
-    setForm(updatedForm);
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.password || !form.address) {
-      alert('Please fill in all fields');
+      setError('Please fill in all fields');
       return;
     }
-    // Simulate registration (log to console)
-    console.log('Registered user:', form);
-    // Save user to localStorage
-    localStorage.setItem('awe_user', JSON.stringify(form));
+
+    // Get users from localStorage or empty array
+    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    // Check if email already exists
+    const exists = users.some(u => u.email === form.email);
+    if (exists) {
+      setError('An account with this email already exists.');
+      return;
+    }
+
+    // Add new user and save
+    users.push(form);
+    localStorage.setItem('awe_users', JSON.stringify(users));
     setSuccess(true);
+    setError('');
     setTimeout(() => {
       navigate('/login');
     }, 1000);
@@ -79,6 +88,9 @@ const Register = () => {
           <p style={{ color: 'green', marginBottom: '16px' }}>
             Registration successful! Redirecting to login...
           </p>
+        )}
+        {error && (
+          <p style={{ color: 'red', marginBottom: '16px' }}>{error}</p>
         )}
         <label style={labelStyle} htmlFor="name">Name</label>
         <input
