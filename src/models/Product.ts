@@ -1,7 +1,8 @@
-export class Product {
+export class Product3 {
   constructor(
     public id: string,
     public name: string,
-    public price: number
+    public price: number,
+    public stock: number // Add this property
   ) {}
 }
