@@ -9,15 +9,13 @@ import Cart from './Cart';
 import Checkout from './Checkout';
 import Profile from './Profile';
 
-function Placeholder() {
-  return (
-    <div style={{ textAlign: 'center', padding: '60px 0' }}>
-      <h1>Page Under Construction</h1>
-    </div>
-  );
-}
+const Placeholder: React.FC = () => (
+  <div style={{ textAlign: 'center', padding: '60px 0' }}>
+    <h1>Page Under Construction</h1>
+  </div>
+);
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
@@ -33,6 +31,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
