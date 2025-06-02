@@ -74,10 +74,10 @@ const Home = () => {
         }}
       >
         <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '20px', color: '#000' }}>
-          Welcome to AWE Electronics - Your Online Electronics Store
+          Welcome to AWE Electronics
         </h1>
         <p style={{ fontSize: '1.2rem', color: '#444', margin: 0 }}>
-          Browse our wide range of products and shop with ease! From laptops to phones, we’ve got it all.
+          Browse our wide range of products and shop with ease
         </p>
       </main>
 
