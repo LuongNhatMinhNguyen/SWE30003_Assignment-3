@@ -1,4 +1,4 @@
-import { Product } from "./Product"; // Remove .ts extension
+import { Product } from "./Product"; 
 
 export class OrderItem {
   constructor(

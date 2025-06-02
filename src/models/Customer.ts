@@ -3,7 +3,7 @@ export class Customer{
     public id: string,
     public name: string,
     public email: string,
-    public password: string, // <-- Add this line
+    public password: string, 
     public address: string,
     public city?: string,
     public postcode?: string,

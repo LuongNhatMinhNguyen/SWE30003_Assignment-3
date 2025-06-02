@@ -215,3 +215,5 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+// Haven't checked Out of Stock scenario.

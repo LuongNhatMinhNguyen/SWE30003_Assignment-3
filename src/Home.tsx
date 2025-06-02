@@ -100,7 +100,7 @@ export default class Home extends React.Component<{}, HomeState> {
           </p>
         </main>
 
-        {/* Teaser Section */}
+        {/* Featured Section */}
         <section
           style={{
             background: '#e0e0e0',

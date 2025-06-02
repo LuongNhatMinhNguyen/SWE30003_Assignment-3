@@ -41,7 +41,7 @@ const Register: React.FC = () => {
       return;
     }
 
-    // Get users from localStorage or empty array
+    // Get users from localStorage 
     const users: Customer[] = JSON.parse(localStorage.getItem('awe_users') || '[]');
     // Check if email already exists
     const exists = users.some(u => u.email === form.email);
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
       return;
     }
 
-    // Create new Customer object (OO style)
+    // Create new Customer object 
     const newCustomer = new Customer(
       uuidv4(),
       form.name,
