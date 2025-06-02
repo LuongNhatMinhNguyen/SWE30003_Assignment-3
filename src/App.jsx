@@ -5,7 +5,8 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import Home from './Home';
 import ProductList from './ProductList';
-import Register from './Register'; 
+import Register from './Register';
+import Login from './Login'; 
 
 function Placeholder() {
   return (
@@ -43,8 +44,8 @@ function App() {
         </p>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} /> 
-          <Route path="/login" element={<Placeholder />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} /> 
           <Route path="/products" element={<ProductList />} />
           <Route path="/cart" element={<Placeholder />} />
           <Route path="/checkout" element={<Placeholder />} />
