@@ -129,7 +129,7 @@ const Profile: React.FC = () => {
                     <ul style={{ margin: 0, paddingLeft: 18 }}>
                       {order.items.map((item, idx) => (
                         <li key={idx}>
-                          {getProductName(item.product.id)} (ID: {item.product.id}), Quantity: {item.quantity}
+                          {getProductName(item.productId)} (ID: {item.productId}), Quantity: {item.quantity}
                         </li>
                       ))}
                     </ul>

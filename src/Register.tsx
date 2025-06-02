@@ -55,6 +55,7 @@ const Register: React.FC = () => {
       uuidv4(),
       form.name,
       form.email,
+      form.password,
       form.address
     );
     // Add new user and save
