@@ -34,3 +34,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+// Finished Testing 1st version of the app
