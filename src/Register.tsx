@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Customer } from './models/Customer';
+import { v4 as uuidv4 } from 'uuid'; // For unique customer IDs (install with npm i uuid @types/uuid)
 
-const inputStyle = {
+const inputStyle: React.CSSProperties = {
   width: '300px',
   padding: '10px',
   border: '1px solid gray',
@@ -10,14 +12,14 @@ const inputStyle = {
   fontSize: '1rem',
 };
 
-const labelStyle = {
+const labelStyle: React.CSSProperties = {
   display: 'block',
   marginBottom: '6px',
   fontWeight: 500,
   color: '#222',
 };
 
-const Register = () => {
+const Register: React.FC = () => {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -28,11 +30,11 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.password || !form.address) {
       setError('Please fill in all fields');
@@ -40,7 +42,7 @@ const Register = () => {
     }
 
     // Get users from localStorage or empty array
-    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    const users: Customer[] = JSON.parse(localStorage.getItem('awe_users') || '[]');
     // Check if email already exists
     const exists = users.some(u => u.email === form.email);
     if (exists) {
@@ -48,8 +50,15 @@ const Register = () => {
       return;
     }
 
+    // Create new Customer object (OO style)
+    const newCustomer = new Customer(
+      uuidv4(),
+      form.name,
+      form.email,
+      form.address
+    );
     // Add new user and save
-    users.push(form);
+    users.push(newCustomer);
     localStorage.setItem('awe_users', JSON.stringify(users));
     setSuccess(true);
     setError('');
@@ -146,8 +155,8 @@ const Register = () => {
             cursor: 'pointer',
             transition: 'background 0.2s',
           }}
-          onMouseOver={(e) => (e.target.style.background = '#0056b3')}
-          onMouseOut={(e) => (e.target.style.background = '#007bff')}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
         >
           Register
         </button>
@@ -164,8 +173,8 @@ const Register = () => {
             fontWeight: 500,
             transition: 'background 0.2s',
           }}
-          onMouseOver={(e) => (e.target.style.background = '#444')}
-          onMouseOut={(e) => (e.target.style.background = '#666')}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#444')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#666')}
         >
           Back to Home
         </Link>

@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { Customer } from "./models/Customer";
+import { Order } from "./models/Order";
+import { Receipt } from "./models/Receipt";
+import { Product } from "./models/Product";
 
-const Profile = () => {
-  const [customer, setCustomer] = useState(null);
-  const [receipts, setReceipts] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate(); 
+const Profile: React.FC = () => {
+  const [customer, setCustomer] = useState<Customer | null>(null);
+  const [receipts, setReceipts] = useState<Receipt[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const users = JSON.parse(localStorage.getItem("awe_users") || "[]");
+    const users: Customer[] = JSON.parse(localStorage.getItem("awe_users") || "[]");
     const loggedInEmail = localStorage.getItem("awe_logged_in");
-    const foundCustomer = users.find((u) => u.email === loggedInEmail);
+    const foundCustomer = users.find((u) => u.email === loggedInEmail) || null;
     setCustomer(foundCustomer);
 
-    const allReceipts = JSON.parse(localStorage.getItem("awe_receipts") || "[]");
-    const allOrders = JSON.parse(localStorage.getItem("awe_orders") || "[]");
+    const allReceipts: Receipt[] = JSON.parse(localStorage.getItem("awe_receipts") || "[]");
+    const allOrders: Order[] = JSON.parse(localStorage.getItem("awe_orders") || "[]");
     setOrders(allOrders);
 
-    // Filter receipts for this user
     if (foundCustomer) {
       const userReceipts = allReceipts.filter(
         (r) =>
@@ -28,27 +31,26 @@ const Profile = () => {
       setReceipts(userReceipts);
     }
 
-    // Fetch products for display in receipts
     fetch("/products.json")
       .then((res) => res.json())
-      .then(setProducts)
+      .then((data) => setProducts(data as Product[]))
       .catch(() => {});
 
     if (!localStorage.getItem("awe_logged_in")) {
-      navigate("/login"); // Redirect if not logged in
+      navigate("/login");
     }
   }, [navigate]);
 
-  const getOrder = (orderId) => orders.find((o) => o.id === orderId);
-  const getProductName = (id) => {
+  const getOrder = (orderId: string) => orders.find((o) => o.id === orderId);
+  const getProductName = (id: string) => {
     const p = products.find((prod) => prod.id === id);
     return p ? p.name : id;
   };
 
   const handleLogout = () => {
     localStorage.removeItem('awe_logged_in');
-    window.location.href = '/login'; 
-  }
+    window.location.href = '/login';
+  };
 
   if (!customer) {
     return (
@@ -127,7 +129,7 @@ const Profile = () => {
                     <ul style={{ margin: 0, paddingLeft: 18 }}>
                       {order.items.map((item, idx) => (
                         <li key={idx}>
-                          {getProductName(item.productId)} (ID: {item.productId}), Quantity: {item.quantity}
+                          {getProductName(item.product.id)} (ID: {item.product.id}), Quantity: {item.quantity}
                         </li>
                       ))}
                     </ul>
@@ -151,8 +153,8 @@ const Profile = () => {
             transition: "background 0.2s",
             display: "inline-block",
           }}
-          onMouseOver={e => (e.target.style.background = "#444")}
-          onMouseOut={e => (e.target.style.background = "#666")}
+          onMouseOver={e => (e.currentTarget.style.background = "#444")}
+          onMouseOut={e => (e.currentTarget.style.background = "#666")}
         >
           Back to Home
         </a>
@@ -171,8 +173,8 @@ const Profile = () => {
             display: 'inline-block',
             marginLeft: 8,
           }}
-          onMouseOver={e => (e.target.style.background = '#b71c1c')}
-          onMouseOut={e => (e.target.style.background = '#d32f2f')}
+          onMouseOver={e => (e.currentTarget.style.background = '#b71c1c')}
+          onMouseOut={e => (e.currentTarget.style.background = '#d32f2f')}
         >
           Log Out
         </button>

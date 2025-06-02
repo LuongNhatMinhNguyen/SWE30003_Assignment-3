@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid'; // Install uuid with: npm install uuid
+import { v4 as uuidv4 } from 'uuid';
+import { Product } from './models/Product';
+import { Order, OrderItem } from './models/Order';
+import { Receipt } from './models/Receipt';
 
-const Cart = () => {
-  const [cart, setCart] = useState([]);
-  const [products, setProducts] = useState([]);
+interface CartItem {
+  productId: string;
+  quantity: number;
+}
+
+const Cart: React.FC = () => {
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   // Load cart from localStorage
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('awe_cart') || '[]');
+    const storedCart: CartItem[] = JSON.parse(localStorage.getItem('awe_cart') || '[]');
     setCart(storedCart);
   }, []);
 
@@ -18,21 +26,21 @@ const Cart = () => {
   useEffect(() => {
     fetch('/products.json')
       .then(res => res.json())
-      .then(setProducts)
+      .then((data) => setProducts(data as Product[]))
       .catch(() => setError('Failed to load products'));
   }, []);
 
   //  Get product details by id
-  const getProduct = (id) => products.find(p => p.id === id);
+  const getProduct = (id: string) => products.find(p => p.id === id);
 
   // Update cart in localStorage and state
-  const updateCart = (newCart) => {
+  const updateCart = (newCart: CartItem[]) => {
     setCart(newCart);
     localStorage.setItem('awe_cart', JSON.stringify(newCart));
   };
 
   // Change quantity
-  const handleQuantity = (productId, delta) => {
+  const handleQuantity = (productId: string, delta: number) => {
     const product = getProduct(productId);
     if (!product) return;
     const item = cart.find(i => i.productId === productId);
@@ -46,7 +54,7 @@ const Cart = () => {
   };
 
   // Remove item
-  const handleRemove = (productId) => {
+  const handleRemove = (productId: string) => {
     const newCart = cart.filter(i => i.productId !== productId);
     updateCart(newCart);
   };
@@ -61,45 +69,30 @@ const Cart = () => {
   const handleCheckout = () => {
     // order creation
     const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
-    const loggedInEmail = localStorage.getItem('awe_logged_in'); 
-    const customer = users.find(u => u.email === loggedInEmail);
+    const loggedInEmail = localStorage.getItem('awe_logged_in');
+    const customer = users.find((u: any) => u.email === loggedInEmail);
 
     // 1. Create Order
-    const order = {
-      id: uuidv4(),
-      customerId: customer ? customer.id || customer.email : 'guest',
-      items: cart.map(item => ({
-        productId: item.productId,
-        quantity: item.quantity,
-      })),
-      total: total,
-      date: new Date().toISOString(),
-    };
-    const orders = JSON.parse(localStorage.getItem('awe_orders') || '[]');
+    const order = new Order(
+      uuidv4(),
+      customer ? customer.id || customer.email : 'guest',
+      cart.map(item => new OrderItem(item.productId, item.quantity)),
+      total,
+      new Date().toISOString()
+    );
+    const orders: Order[] = JSON.parse(localStorage.getItem('awe_orders') || '[]');
     orders.push(order);
     localStorage.setItem('awe_orders', JSON.stringify(orders));
 
-    // 2. Create Invoice
-    const invoice = {
-      id: uuidv4(),
-      orderId: order.id,
-      total: order.total,
-      date: order.date,
-      customerId: order.customerId,
-    };
-    const invoices = JSON.parse(localStorage.getItem('awe_invoices') || '[]');
-    invoices.push(invoice);
-    localStorage.setItem('awe_invoices', JSON.stringify(invoices));
-
-    // 3. Create Receipt
-    const receipt = {
-      id: uuidv4(),
-      orderId: order.id,
-      total: order.total,
-      date: order.date,
-      customerId: order.customerId,
-    };
-    const receipts = JSON.parse(localStorage.getItem('awe_receipts') || '[]');
+    // 2. Create Receipt
+    const receipt = new Receipt(
+      uuidv4(),
+      order.id,
+      order.total,
+      order.date,
+      order.customerId
+    );
+    const receipts: Receipt[] = JSON.parse(localStorage.getItem('awe_receipts') || '[]');
     receipts.push(receipt);
     localStorage.setItem('awe_receipts', JSON.stringify(receipts));
 
@@ -109,7 +102,6 @@ const Cart = () => {
 
     // Log for assignment requirements
     console.log('Order placed:', order);
-    console.log('Invoice created:', invoice);
     console.log('Receipt created:', receipt);
 
     // Navigate to checkout page
@@ -146,8 +138,8 @@ const Cart = () => {
           fontSize: '1rem',
           transition: 'background 0.2s',
         }}
-        onMouseOver={e => (e.target.style.background = '#0056b3')}
-        onMouseOut={e => (e.target.style.background = '#007bff')}
+        onMouseOver={e => (e.currentTarget.style.background = '#0056b3')}
+        onMouseOut={e => (e.currentTarget.style.background = '#007bff')}
       >
         Continue Shopping
       </Link>
@@ -245,8 +237,8 @@ const Cart = () => {
               cursor: 'pointer',
               transition: 'background 0.2s',
             }}
-            onMouseOver={e => (e.target.style.background = '#0056b3')}
-            onMouseOut={e => (e.target.style.background = '#007bff')}
+            onMouseOver={e => (e.currentTarget.style.background = '#0056b3')}
+            onMouseOut={e => (e.currentTarget.style.background = '#007bff')}
           >
             Proceed to Checkout
           </button>

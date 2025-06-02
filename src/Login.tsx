@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Customer } from './models/Customer';
 
-const inputStyle = {
+const inputStyle: React.CSSProperties = {
   width: '300px',
   padding: '10px',
   border: '1px solid gray',
@@ -10,33 +11,34 @@ const inputStyle = {
   fontSize: '1rem',
 };
 
-const labelStyle = {
+const labelStyle: React.CSSProperties = {
   display: 'block',
   marginBottom: '6px',
   fontWeight: 500,
   color: '#222',
 };
 
-const Login = () => {
+const Login: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError('');
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    const users: Customer[] = JSON.parse(
+      localStorage.getItem('awe_users') || '[]'
+    );
     const user = users.find(
       (u) => u.email === form.email && u.password === form.password
     );
     if (user) {
-      localStorage.setItem('awe_logged_in', form.email); // <-- Set logged in user
-
+      localStorage.setItem('awe_logged_in', form.email);
       setSuccess(true);
       setError('');
       setTimeout(() => {
@@ -82,7 +84,9 @@ const Login = () => {
         {error && (
           <p style={{ color: 'red', marginBottom: '16px' }}>{error}</p>
         )}
-        <label style={labelStyle} htmlFor="email">Email</label>
+        <label style={labelStyle} htmlFor="email">
+          Email
+        </label>
         <input
           style={inputStyle}
           id="email"
@@ -92,7 +96,9 @@ const Login = () => {
           value={form.email}
           onChange={handleChange}
         />
-        <label style={labelStyle} htmlFor="password">Password</label>
+        <label style={labelStyle} htmlFor="password">
+          Password
+        </label>
         <input
           style={inputStyle}
           id="password"
@@ -116,8 +122,8 @@ const Login = () => {
             cursor: 'pointer',
             transition: 'background 0.2s',
           }}
-          onMouseOver={e => (e.target.style.background = '#0056b3')}
-          onMouseOut={e => (e.target.style.background = '#007bff')}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
         >
           Login
         </button>
@@ -134,8 +140,8 @@ const Login = () => {
             fontWeight: 500,
             transition: 'background 0.2s',
           }}
-          onMouseOver={e => (e.target.style.background = '#444')}
-          onMouseOut={e => (e.target.style.background = '#666')}
+          onMouseOver={(e) => (e.currentTarget.style.background = '#444')}
+          onMouseOut={(e) => (e.currentTarget.style.background = '#666')}
         >
           Back to Home
         </Link>

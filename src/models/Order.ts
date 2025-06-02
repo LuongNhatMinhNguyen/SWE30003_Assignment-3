@@ -2,7 +2,7 @@ import { Product } from "./Product.ts";
 
 export class OrderItem {
   constructor(
-    public product: Product,
+    public productId: string,
     public quantity: number
   ) {}
 }
