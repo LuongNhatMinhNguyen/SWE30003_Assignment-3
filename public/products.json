@@ -1,0 +1,5 @@
+[
+  { "id": "P001", "name": "Laptop", "price": 999.99, "stock": 10, "category": "Electronics" },
+  { "id": "P002", "name": "Phone", "price": 499.99, "stock": 20, "category": "Electronics" },
+  { "id": "P003", "name": "Tablet", "price": 299.99, "stock": 15, "category": "Electronics" }
+]
