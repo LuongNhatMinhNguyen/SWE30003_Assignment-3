@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Customer } from './models/Customer';
+import { Customer } from '../models/Customer';
+import { v4 as uuidv4 } from 'uuid'; // For unique customer IDs (install with npm i uuid @types/uuid)
 
 const inputStyle: React.CSSProperties = {
   width: '300px',
@@ -18,36 +19,53 @@ const labelStyle: React.CSSProperties = {
   color: '#222',
 };
 
-const Login: React.FC = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+const Register: React.FC = () => {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    address: '',
+  });
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError('');
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const users: Customer[] = JSON.parse(
-      localStorage.getItem('awe_users') || '[]'
-    );
-    const user = users.find(
-      (u) => u.email === form.email && u.password === form.password
-    );
-    if (user) {
-      localStorage.setItem('awe_logged_in', form.email);
-      setSuccess(true);
-      setError('');
-      setTimeout(() => {
-        navigate('/');
-      }, 1000);
-    } else {
-      setError('Invalid email or password');
-      setSuccess(false);
+    if (!form.name || !form.email || !form.password || !form.address) {
+      setError('Please fill in all fields');
+      return;
     }
+
+    // Get users from localStorage 
+    const users: Customer[] = JSON.parse(localStorage.getItem('awe_users') || '[]');
+    // Check if email already exists
+    const exists = users.some(u => u.email === form.email);
+    if (exists) {
+      setError('An account with this email already exists.');
+      return;
+    }
+
+    // Create new Customer object 
+    const newCustomer = new Customer(
+      uuidv4(),
+      form.name,
+      form.email,
+      form.password,
+      form.address
+    );
+    // Add new user and save
+    users.push(newCustomer);
+    localStorage.setItem('awe_users', JSON.stringify(users));
+    setSuccess(true);
+    setError('');
+    setTimeout(() => {
+      navigate('/login');
+    }, 1000);
   };
 
   return (
@@ -63,7 +81,7 @@ const Login: React.FC = () => {
       }}
     >
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit}
         style={{
           background: '#fff',
           padding: '32px 28px',
@@ -75,18 +93,26 @@ const Login: React.FC = () => {
           minWidth: '340px',
         }}
       >
-        <h2 style={{ marginBottom: 24, color: '#1976d2' }}>Login</h2>
+        <h2 style={{ marginBottom: 24, color: '#1976d2' }}>Register</h2>
         {success && (
           <p style={{ color: 'green', marginBottom: '16px' }}>
-            Login successful! Redirecting to home...
+            Registration successful! Redirecting to login...
           </p>
         )}
         {error && (
           <p style={{ color: 'red', marginBottom: '16px' }}>{error}</p>
         )}
-        <label style={labelStyle} htmlFor="email">
-          Email
-        </label>
+        <label style={labelStyle} htmlFor="name">Name</label>
+        <input
+          style={inputStyle}
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Enter your name"
+          value={form.name}
+          onChange={handleChange}
+        />
+        <label style={labelStyle} htmlFor="email">Email</label>
         <input
           style={inputStyle}
           id="email"
@@ -96,9 +122,7 @@ const Login: React.FC = () => {
           value={form.email}
           onChange={handleChange}
         />
-        <label style={labelStyle} htmlFor="password">
-          Password
-        </label>
+        <label style={labelStyle} htmlFor="password">Password</label>
         <input
           style={inputStyle}
           id="password"
@@ -106,6 +130,16 @@ const Login: React.FC = () => {
           type="password"
           placeholder="Enter your password"
           value={form.password}
+          onChange={handleChange}
+        />
+        <label style={labelStyle} htmlFor="address">Address</label>
+        <input
+          style={inputStyle}
+          id="address"
+          name="address"
+          type="text"
+          placeholder="Enter your address"
+          value={form.address}
           onChange={handleChange}
         />
         <button
@@ -125,7 +159,7 @@ const Login: React.FC = () => {
           onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
           onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
         >
-          Login
+          Register
         </button>
         <Link
           to="/"
@@ -150,4 +184,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

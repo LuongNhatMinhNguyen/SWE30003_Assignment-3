@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './Home';
+import Home from './pages/Home/Home';
 import ProductList from './ProductList';
-import Register from './Register';
-import Login from './Login';
-import Cart from './Cart';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Cart from './pages/Cart';
 import Checkout from './Checkout';
 import Profile from './Profile';
 

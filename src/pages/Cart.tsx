@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { Product } from './models/Product';
-import { Order, OrderItem } from './models/Order';
-import { Receipt } from './models/Receipt';
+import { Product } from '../models/Product';
+import { Order, OrderItem } from '../models/Order';
+import { Receipt } from '../models/Receipt';
 
 interface CartItem {
   productId: string;
