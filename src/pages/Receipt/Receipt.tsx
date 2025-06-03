@@ -40,6 +40,11 @@ const ReceiptPage = () => {
     return p ? p.name : productId;
   };
 
+  const getProductPrice = (productId: string): number => {
+    const p = products.find(prod => prod.id === productId);
+    return p ? p.price : 0;
+  };
+
   if (!receipt || !order) {
     return <div className="receipt-container">Receipt not found.</div>;
   }
@@ -50,7 +55,6 @@ const ReceiptPage = () => {
       <div><strong>Receipt ID:</strong> {receipt.id}</div>
       <div><strong>Order ID:</strong> {order.id}</div>
       <div><strong>Date:</strong> {new Date(order.date).toLocaleString()}</div>
-      <div><strong>Total:</strong> ${receipt.total.toFixed(2)}</div>
       <div><strong>Customer:</strong> {customer?.name || customer?.email || receipt.customerId}</div>
       <div><strong>Address:</strong> {customer?.address || "-"}</div>
       <div style={{ marginTop: 10 }}>
@@ -58,16 +62,23 @@ const ReceiptPage = () => {
         <ul>
           {order.items.map((item, idx) => (
             <li key={idx}>
-              {getProductName(item.productId)} (ID: {item.productId}), Quantity: {item.quantity}
+              {getProductName(item.productId)} (ID: {item.productId}) | {item.quantity}x ${getProductPrice(item.productId).toFixed(2)} | ${(getProductPrice(item.productId) * item.quantity).toFixed(2)}
             </li>
           ))}
         </ul>
       </div>
+      <div><strong>Total:</strong> ${receipt.total.toFixed(2)}</div>
       <div className="confirmation-message">
         <h3>Thank you for your purchase!</h3>
         <p>Your order has been placed.<br /><strong>Payment is simulated for this assignment.</strong></p>
       </div>
-      <Link to="/" className="back-link">Back to Home</Link>
+      <Link to="/profile" className="back-link">Back</Link>
+      <button
+              className="refund-button"
+              onClick={() => alert('Request for refund sent, expect email response.')}
+            >
+              Request Refund
+            </button>
     </div>
   );
 };

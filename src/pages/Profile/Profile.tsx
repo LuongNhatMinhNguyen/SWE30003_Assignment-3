@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Customer } from "../../models/Customer";
 import { Order } from "../../models/Order";
 import { Receipt } from "../../models/Receipt";
@@ -102,14 +102,11 @@ const Profile: React.FC = () => {
           <div className="no-receipts">No receipts found.</div>
         ) : (
           receipts.map((receipt) => {
-            const order = getOrder(receipt.orderId);
             return (
+              <Link to={`/receipt/${receipt.id}`}>
               <div className="receipt" key={receipt.id}>
                 <div>
                   <strong>Receipt ID:</strong> {receipt.id}
-                </div>
-                <div>
-                  <strong>Order ID:</strong> {receipt.orderId}
                 </div>
                 <div>
                   <strong>Date:</strong>{" "}
@@ -118,20 +115,8 @@ const Profile: React.FC = () => {
                 <div>
                   <strong>Total:</strong> ${receipt.total.toFixed(2)}
                 </div>
-                {order && (
-                  <div className="receipt-items">
-                    <strong>Items:</strong>
-                    <ul>
-                      {order.items.map((item, idx) => (
-                        <li key={idx}>
-                          {getProductName(item.productId)} (ID: {item.productId}
-                          ), Quantity: {item.quantity}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </div>
+              </Link>
             );
           })
         )}
