@@ -71,7 +71,7 @@ export default function Item() {
             </button>
             <div className="product-desc">
                 <strong>Description:</strong>
-                {product?.desc.map((line, index) => (
+                {product?.desc?.map((line, index) => (
                     <p key={index}>{line}</p>
                 ))}
             </div>
