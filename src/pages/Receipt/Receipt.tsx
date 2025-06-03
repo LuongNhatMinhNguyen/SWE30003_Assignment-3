@@ -55,7 +55,7 @@ const ReceiptPage = () => {
       <div><strong>Address:</strong> {customer?.address || "-"}</div>
       <div style={{ marginTop: 10 }}>
         <strong>Items:</strong>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul>
           {order.items.map((item, idx) => (
             <li key={idx}>
               {getProductName(item.productId)} (ID: {item.productId}), Quantity: {item.quantity}
