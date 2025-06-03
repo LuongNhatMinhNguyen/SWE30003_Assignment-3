@@ -205,18 +205,6 @@ const Checkout = () => {
             value={shipping.postcode}
             onChange={handleChange}
           />
-          <label style={labelStyle} htmlFor="country">
-            Country
-          </label>
-          <input
-            style={inputStyle}
-            id="country"
-            name="country"
-            type="text"
-            placeholder="Enter your country"
-            value={shipping.country}
-            onChange={handleChange}
-          />
           <button
             type="submit"
             style={{

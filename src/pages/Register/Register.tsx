@@ -1,3 +1,4 @@
+import './Register.css';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Customer } from '../../models/Customer';
@@ -25,6 +26,8 @@ const Register: React.FC = () => {
     email: '',
     password: '',
     address: '',
+    city: '',
+    postcode: '',
   });
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -36,8 +39,8 @@ const Register: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.password || !form.address) {
-      setError('Please fill in all fields');
+    if (!form.name || !form.email || !form.password) {
+      setError('Please fill in all required fields');
       return;
     }
 
@@ -56,7 +59,9 @@ const Register: React.FC = () => {
       form.name,
       form.email,
       form.password,
-      form.address
+      form.address,
+      form.city,
+      form.postcode,
     );
     
     // Add new user and save
@@ -70,118 +75,37 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: '#f5f5f5',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-      }}
-    >
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          background: '#fff',
-          padding: '32px 28px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          minWidth: '340px',
-        }}
-      >
-        <h2 style={{ marginBottom: 24, color: '#1976d2' }}>Register</h2>
-        {success && (
-          <p style={{ color: 'green', marginBottom: '16px' }}>
-            Registration successful! Redirecting to login...
-          </p>
-        )}
-        {error && (
-          <p style={{ color: 'red', marginBottom: '16px' }}>{error}</p>
-        )}
-        <label style={labelStyle} htmlFor="name">Name</label>
-        <input
-          style={inputStyle}
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Enter your name"
-          value={form.name}
-          onChange={handleChange}
-        />
-        <label style={labelStyle} htmlFor="email">Email</label>
-        <input
-          style={inputStyle}
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Enter your email"
-          value={form.email}
-          onChange={handleChange}
-        />
-        <label style={labelStyle} htmlFor="password">Password</label>
-        <input
-          style={inputStyle}
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-          value={form.password}
-          onChange={handleChange}
-        />
-        <label style={labelStyle} htmlFor="address">Address</label>
-        <input
-          style={inputStyle}
-          id="address"
-          name="address"
-          type="text"
-          placeholder="Enter your address"
-          value={form.address}
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          style={{
-            marginTop: '18px',
-            background: '#007bff',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            fontSize: '1rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background 0.2s',
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = '#0056b3')}
-          onMouseOut={(e) => (e.currentTarget.style.background = '#007bff')}
-        >
-          Register
-        </button>
-        <Link
-          to="/"
-          style={{
-            marginTop: '16px',
-            display: 'inline-block',
-            background: '#666',
-            color: '#fff',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            textDecoration: 'none',
-            fontWeight: 500,
-            transition: 'background 0.2s',
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = '#444')}
-          onMouseOut={(e) => (e.currentTarget.style.background = '#666')}
-        >
-          Back to Home
-        </Link>
-      </form>
-    </div>
+    <div className="register-container">
+  <form onSubmit={handleSubmit} className="register-form">
+    <h2 style={{ marginBottom: 24, color: '#1976d2' }}>Register</h2>
+
+    {success && <p style={{ color: 'green', marginBottom: '16px' }}>Registration successful! Redirecting to login...</p>}
+    {error && <p style={{ color: 'red', marginBottom: '16px' }}>{error}</p>}
+
+    <label className="register-label" htmlFor="name">Name</label>
+    <input className="register-input" id="name" name="name" type="text" placeholder="Enter your name" value={form.name} onChange={handleChange} />
+
+    <label className="register-label" htmlFor="email">Email</label>
+    <input className="register-input" id="email" name="email" type="email" placeholder="Enter your email" value={form.email} onChange={handleChange} />
+
+    <label className="register-label" htmlFor="password">Password</label>
+    <input className="register-input" id="password" name="password" type="password" placeholder="Enter your password" value={form.password} onChange={handleChange} />
+
+    <label className="register-label" htmlFor="address">Address</label>
+    <input className="register-input" id="address" name="address" type="text" placeholder="Enter your address (optional)" value={form.address} onChange={handleChange} />
+
+    <label className="register-label" htmlFor="city">City</label>
+    <input className="register-input" id="city" name="city" type="text" placeholder="Enter your city (optional)" value={form.city} onChange={handleChange} />
+
+    <label className="register-label" htmlFor="postcode">Postcode</label>
+    <input className="register-input" id="postcode" name="postcode" type="text" placeholder="Enter your postcode (optional)" value={form.postcode} onChange={handleChange} />
+
+    <button type="submit" className="register-button">Register</button>
+
+    <Link to="/" className="back-button">Back to Home</Link>
+  </form>
+</div>
+
   );
 };
 

@@ -4,9 +4,8 @@ export class Customer{
     public name: string,
     public email: string,
     public password: string, 
-    public address: string,
+    public address?: string,
     public city?: string,
-    public postcode?: string,
-    public country?: string
+    public postcode?: string
   ) {}
 }
