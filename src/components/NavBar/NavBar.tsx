@@ -8,16 +8,26 @@ type NavLink = {
   to: string;
 };
 
-const navLinks: NavLink[] = [
-  { name: 'Register', to: '/register' },
-  { name: 'Login', to: '/login' },
-  { name: 'Products', to: '/products' },
-  { name: 'Cart', to: '/cart' },
-  { name: 'Profile', to: '/profile' },
-];
-
 export default function NavBar() {
   const [hovered, setHovered] = React.useState<string | null>(null);
+  const isLoggedIn = localStorage.getItem("awe_logged_in") !== null;
+
+   let navLinks: NavLink[] = [];
+
+  if (isLoggedIn) {
+    navLinks = [
+      { name: 'Products', to: '/products' },
+      { name: 'Cart', to: '/cart' },
+      { name: 'Profile', to: '/profile' },
+    ];
+  } else {
+    navLinks = [
+      { name: 'Products', to: '/products' },
+      { name: 'Cart', to: '/cart' },
+      { name: 'Register', to: '/register' },
+      { name: 'Login', to: '/login' },
+    ];
+  }
 
   return (
     <nav className="navbar">
