@@ -58,6 +58,7 @@ const Register: React.FC = () => {
       form.password,
       form.address
     );
+    
     // Add new user and save
     users.push(newCustomer);
     localStorage.setItem('awe_users', JSON.stringify(users));

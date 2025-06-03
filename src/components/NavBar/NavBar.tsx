@@ -9,7 +9,6 @@ type NavLink = {
 };
 
 const navLinks: NavLink[] = [
-  { name: 'Home', to: '/' },
   { name: 'Register', to: '/register' },
   { name: 'Login', to: '/login' },
   { name: 'Products', to: '/products' },
@@ -22,7 +21,7 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-        <div className="navbar-brand">AWE Electronics</div>
+        <div className="navbar-brand"><Link to='/' >AWE Electronics</Link></div>
         <div className="navbar-links">
           {navLinks.map((link) => (
             <Link
