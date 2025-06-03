@@ -135,4 +135,10 @@
     text-align: center;
     color: #555;
 }
-  
+
+.product-thumbnail {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}

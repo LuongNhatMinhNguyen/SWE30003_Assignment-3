@@ -1,13 +1,7 @@
+import './Item.css';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Product } from '../../models/Product';
-
-// Sample data (can be replaced with props or fetched data)
-const allProducts: Product[] = [
-  new Product('P001', 'Laptop', 999.99, 10),
-  new Product('P002', 'Phone', 499.99, 20),
-  new Product('P003', 'Tablet', 299.99, 15),
-];
 
 export default function Item() {
   const { id } = useParams<{ id: string }>();
@@ -55,16 +49,33 @@ export default function Item() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <Link to="/products" style={{ marginBottom: '1rem', display: 'inline-block' }}>
-        ← Back to Products
-      </Link>
-      <h2>{product?.name}</h2>
-      <p>Price: ${product?.price.toFixed(2)}</p>
-      <p>Stock: {product?.stock}</p>
-      <button onClick={handleAddToCart} disabled={product?.stock === 0}>
-        {product?.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-      </button>
+    <div className="item-container">
+        <div className="item-header">
+            <Link to="/products" className="button-link button-back">Back to Products</Link>
+            <Link to="/cart" className="button-link button-cart">Go to Cart</Link>
+        </div>
+        <div className="item-card">
+            <img
+                src={`/images/${product?.id}.webp`}
+                alt={product?.name}
+                className="product-image"
+                />
+            <h2>{product?.name}</h2>
+            <div className="price">Price: ${product?.price.toFixed(2)}</div>
+            <div className="stock">Stock: {product?.stock}</div>
+            <button
+                className="add-button"
+                onClick={handleAddToCart} disabled={product?.stock === 0}
+                >
+                Add to Cart
+            </button>
+            <div className="product-desc">
+                <strong>Description:</strong>
+                {product?.desc.map((line, index) => (
+                    <p key={index}>{line}</p>
+                ))}
+            </div>
+        </div>
     </div>
   );
 }

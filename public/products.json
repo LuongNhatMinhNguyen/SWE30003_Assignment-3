@@ -1,5 +1,28 @@
 [
-  { "id": "P001", "name": "Laptop", "price": 999.99, "stock": 10, "category": "Electronics" },
-  { "id": "P002", "name": "Phone", "price": 499.99, "stock": 20, "category": "Electronics" },
-  { "id": "P003", "name": "Tablet", "price": 299.99, "stock": 15, "category": "Electronics" }
+  { "id": "P001", "name": "Laptop", "price": 999.99, "stock": 10, "category": "Electronics", 
+    "desc":[
+      "Sleek and lightweight design ideal for portability.",
+      "Powerful processor and 16GB of RAM for multitasking.",
+      "14-inch HD display with vibrant colour clarity.",
+      "512GB SSD for fast storage and quick boot times.",
+      "Up to 10 hours of battery life on a single charge."
+      ]},
+
+  { "id": "P002", "name": "Phone", "price": 499.99, "stock": 20, "category": "Electronics",
+    "desc": [
+      "6.5-inch high-resolution touchscreen display.",
+      "Dual-camera system with advanced photo modes.",
+      "Fast processor and 5G connectivity.",
+      "128GB storage with expandable memory option.",
+      "Fingerprint scanner and facial recognition security."
+      ]},
+
+  { "id": "P003", "name": "Tablet", "price": 299.99, "stock": 15, "category": "Electronics",
+    "desc": [
+     "10-inch full HD screen perfect for movies and reading.",
+      "Lightweight and easy to carry on the go.",
+      "Supports stylus input for drawing and note-taking.",
+      "Quad-speaker setup for rich audio experience.",
+      "Long battery life and fast USB-C charging."
+      ]}
 ]

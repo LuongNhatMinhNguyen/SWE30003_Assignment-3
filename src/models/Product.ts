@@ -3,6 +3,7 @@ export class Product {
     public id: string,
     public name: string,
     public price: number,
-    public stock: number 
+    public stock: number, 
+    public desc: string[]
   ) {}
 }

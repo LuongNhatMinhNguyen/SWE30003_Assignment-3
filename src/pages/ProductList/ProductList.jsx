@@ -98,6 +98,11 @@ const ProductList = () => {
           <div className="product-card" key={product.id}>
             <Link to={`/product/${product.id}`}>
               <div>{product.name}</div>
+              <img
+                src={`/images/${product?.id}.webp`}
+                alt={product?.name}
+                className="product-thumbnail"
+                />
               <div className="price">${product.price.toFixed(2)}</div>
               <div className="stock">({product.stock} in stock)</div>
             </Link>
