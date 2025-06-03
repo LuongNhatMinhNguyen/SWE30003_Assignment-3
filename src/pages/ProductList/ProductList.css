@@ -1,0 +1,138 @@
+.product-list-container {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-list-header {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 24px;
+}
+
+.button-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    color: #fff;
+    transition: background 0.2s;
+    margin-right: 12px;
+}
+
+.button-back {
+    background: #007bff;
+}
+
+.button-back:hover {
+    background: #0056b3;
+}
+
+.button-cart {
+    background: #28a745;
+}
+
+.button-cart:hover {
+    background: #1e7e34;
+}
+
+.search-controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.search-input,
+.category-select {
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.search-input {
+    width: 300px;
+}
+
+.category-select {
+    min-width: 160px;
+}
+
+.status-message {
+    font-size: 1.2rem;
+    margin-top: 40px;
+}
+
+.status-message.error {
+    color: red;
+}
+
+.status-message.loading {
+    color: #333;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.product-card {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+    width: 200px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card .price {
+    color: #1976d2;
+    margin-bottom: 4px;
+}
+
+.product-card .stock {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.product-card .add-button {
+    margin-top: 10px;
+    background: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.product-card .add-button:hover {
+    background: #0056b3;
+}
+
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #555;
+}
+  

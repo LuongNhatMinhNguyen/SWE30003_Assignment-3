@@ -1,0 +1,129 @@
+.cart-container {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    margin-bottom: 24px;
+    color: #000;
+  }
+  
+  .continue-shopping {
+    margin-bottom: 20px;
+    background: #007bff;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  
+  .continue-shopping:hover {
+    background: #0056b3;
+  }
+  
+  .empty-cart {
+    color: #555;
+    margin-top: 40px;
+  }
+  
+  .cart-items {
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .product-name {
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .product-price,
+  .product-stock {
+    color: #000;
+    font-size: 0.95rem;
+  }
+  
+  .cart-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .cart-actions button {
+    padding: 4px 10px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #eee;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .cart-actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .remove-button {
+    margin-left: 16px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  
+  .item-total {
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .cart-total {
+    text-align: right;
+    margin-top: 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .checkout-button {
+    margin-top: 24px;
+    background: #007bff;
+    color: #fff;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .checkout-button:hover {
+    background: #0056b3;
+  }
+  
+  .cart-error {
+    color: red;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
