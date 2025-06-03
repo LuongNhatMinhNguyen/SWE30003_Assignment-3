@@ -47,9 +47,6 @@ const ProfileDetails: React.FC = () => {
             <label className="profile-details-label" htmlFor="name">Name</label>
             <input className="profile-details-input" id="name" name="name" type="text" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
 
-            <label className="profile-details-label" htmlFor="email">Email</label>
-            <input className="profile-details-input" id="email" name="email" type="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
-
             <label className="profile-details-label" htmlFor="password">Password</label>
             <input className="profile-details-input" id="password" name="password" type="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
 
