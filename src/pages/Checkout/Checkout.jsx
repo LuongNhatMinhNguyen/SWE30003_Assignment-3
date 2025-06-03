@@ -22,7 +22,6 @@ const Checkout = () => {
     address: "",
     city: "",
     postcode: "",
-    country: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [latestReceipt, setLatestReceipt] = useState(null);
@@ -48,7 +47,6 @@ const Checkout = () => {
         address: foundCustomer.address || "",
         city: foundCustomer.city || "",
         postcode: foundCustomer.postcode || "",
-        country: foundCustomer.country || "",
       });
     }
 
@@ -68,8 +66,7 @@ const Checkout = () => {
     if (
       !shipping.address.trim() ||
       !shipping.city.trim() ||
-      !shipping.postcode.trim() ||
-      !shipping.country.trim()
+      !shipping.postcode.trim()
     ) {
       alert("Please fill in all shipping details.");
       return;
