@@ -55,7 +55,7 @@ const Register: React.FC = () => {
 
     // Create new Customer object 
     const newCustomer = new Customer(
-      uuidv4(),
+      uuidv4().split("-")[0],
       form.name,
       form.email,
       form.password,

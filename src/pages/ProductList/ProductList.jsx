@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('All Categories');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+const [products, setProducts] = useState([]);
+const [search, setSearch] = useState('');
+const [category, setCategory] = useState('All Categories');
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState('');
 
   // Fetch products
   useEffect(() => {
@@ -123,5 +123,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-// Haven't checked Out of Stock scenario.
