@@ -61,39 +61,11 @@ const Cart: React.FC = () => {
   }, 0);
 
   const handleCheckout = () => {
-    const users = JSON.parse(localStorage.getItem('awe_users') || '[]');
-    const loggedInEmail = localStorage.getItem('awe_logged_in');
-    const customer = users.find((u: any) => u.email === loggedInEmail);
-
-    const order = new Order(
-      uuidv4(),
-      customer ? customer.id || customer.email : 'guest',
-      cart.map(item => new OrderItem(item.productId, item.quantity)),
-      total,
-      new Date().toISOString()
-    );
-    const orders: Order[] = JSON.parse(localStorage.getItem('awe_orders') || '[]');
-    orders.push(order);
-    localStorage.setItem('awe_orders', JSON.stringify(orders));
-
-    const receipt = new Receipt(
-      uuidv4(),
-      order.id,
-      order.total,
-      order.date,
-      order.customerId
-    );
-    const receipts: Receipt[] = JSON.parse(localStorage.getItem('awe_receipts') || '[]');
-    receipts.push(receipt);
-    localStorage.setItem('awe_receipts', JSON.stringify(receipts));
-
-    localStorage.setItem('awe_cart', '[]');
-    setCart([]);
-
-    console.log('Order placed:', order);
-    console.log('Receipt created:', receipt);
-
-    navigate('/checkout');
+    navigate('/checkout', { 
+      state: {
+        cart,
+        total
+      } });
   };
 
   if (error) {
@@ -120,7 +92,7 @@ const Cart: React.FC = () => {
                 </div>
                 <div className="cart-actions">
                   <button onClick={() => handleQuantity(item.productId, -1)} disabled={item.quantity <= 1}>-</button>
-                  <span>{item.quantity}</span>
+                  <span className='item-quantity'>{item.quantity}</span>
                   <button onClick={() => handleQuantity(item.productId, 1)} disabled={item.quantity >= product.stock}>+</button>
                   <button onClick={() => handleRemove(item.productId)} className="remove-button">Remove</button>
                 </div>

@@ -11,6 +11,7 @@ import Profile from './pages/Profile/Profile';
 import NavBar from './components/NavBar/NavBar'
 import Footer from './components/Footer/Footer'
 import Item from './pages/Item/Item';
+import ReceiptPage from './pages/Receipt/Receipt';
 
 const Placeholder: React.FC = () => (
   <div style={{ textAlign: 'center', padding: '60px 0' }}>
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/product/:id" element={<Item />} />
+          <Route path="/receipt/:id" element={<ReceiptPage />} />
         </Routes>
         <Footer/>
       </div>
