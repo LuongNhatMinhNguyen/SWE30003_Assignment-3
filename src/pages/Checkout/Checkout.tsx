@@ -13,7 +13,6 @@ interface ShippingInfo {
   address: string;
   city: string;
   postcode: string;
-  country: string;
 }
 
 interface LocationState {
@@ -30,7 +29,6 @@ const Checkout = () => {
     address: "",
     city: "",
     postcode: "",
-    country: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [customer, setCustomer] = useState<Customer | null>(null);
@@ -49,7 +47,6 @@ const Checkout = () => {
         address: foundCustomer.address || "",
         city: foundCustomer.city || "",
         postcode: foundCustomer.postcode || "",
-        country: foundCustomer.country || "",
       });
     }
 
@@ -71,7 +68,7 @@ const Checkout = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!shipping.address || !shipping.city || !shipping.postcode || !shipping.country) {
+    if (!shipping.address || !shipping.city || !shipping.postcode) {
       alert("Please fill in all shipping details.");
       return;
     }
@@ -132,8 +129,6 @@ const Checkout = () => {
             <input className="checkout-input" id="city" name="city" type="text" value={shipping.city} onChange={handleChange} />
             <label className="checkout-label" htmlFor="postcode">Postcode</label>
             <input className="checkout-input" id="postcode" name="postcode" type="text" value={shipping.postcode} onChange={handleChange} />
-            <label className="checkout-label" htmlFor="country">Country</label>
-            <input className="checkout-input" id="country" name="country" type="text" value={shipping.country} onChange={handleChange} />
             <button className="checkout-button" type="submit">Confirm Shipping</button>
           </form>
 
@@ -143,7 +138,6 @@ const Checkout = () => {
             <div><strong>Address:</strong> {shipping.address || '-'}</div>
             <div><strong>City:</strong> {shipping.city || '-'}</div>
             <div><strong>Postcode:</strong> {shipping.postcode || '-'}</div>
-            <div><strong>Country:</strong> {shipping.country || '-'}</div>
             <div><strong>Total:</strong> ${total.toFixed(2)}</div>
             <div style={{ marginTop: 10 }}>
               <strong>Items:</strong>
