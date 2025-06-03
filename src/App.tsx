@@ -23,8 +23,8 @@ const Placeholder: React.FC = () => (
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
         <NavBar/>
+      <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -37,11 +37,10 @@ const App: React.FC = () => {
           <Route path="/receipt/:id" element={<ReceiptPage />} />
           <Route path="/profile/details" element={<ProfileDetails />} />
         </Routes>
-        <Footer/>
       </div>
+        <Footer/>
     </BrowserRouter>
   );
 };
 
 export default App;
-// Finished Testing 1st version of the app

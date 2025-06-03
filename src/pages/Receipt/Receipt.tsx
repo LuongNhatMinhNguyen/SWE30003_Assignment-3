@@ -52,20 +52,22 @@ const ReceiptPage = () => {
   return (
     <div className="receipt-container">
       <h2>Receipt</h2>
-      <div><strong>Receipt ID:</strong> {receipt.id}</div>
-      <div><strong>Order ID:</strong> {order.id}</div>
-      <div><strong>Date:</strong> {new Date(order.date).toLocaleString()}</div>
-      <div><strong>Customer:</strong> {customer?.name || customer?.email || receipt.customerId}</div>
-      <div><strong>Address:</strong> {customer?.address || "-"}</div>
-      <div style={{ marginTop: 10 }}>
-        <strong>Items:</strong>
-        <ul>
-          {order.items.map((item, idx) => (
-            <li key={idx}>
-              {getProductName(item.productId)} (ID: {item.productId}) | {item.quantity}x ${getProductPrice(item.productId).toFixed(2)} | ${(getProductPrice(item.productId) * item.quantity).toFixed(2)}
-            </li>
-          ))}
-        </ul>
+      <div className="receipt-info">
+        <div><strong>Receipt ID:</strong> {receipt.id}</div>
+        <div><strong>Order ID:</strong> {order.id}</div>
+        <div><strong>Date:</strong> {new Date(order.date).toLocaleString()}</div>
+        <div><strong>Customer:</strong> {customer?.name || customer?.email || receipt.customerId}</div>
+        <div><strong>Address:</strong> {customer?.address || "-"}</div>
+        <div style={{ marginTop: 50 }}>
+          <strong>Items:</strong>
+          <ul>
+            {order.items.map((item, idx) => (
+              <li key={idx}>
+                {getProductName(item.productId)} (ID: {item.productId}) | {item.quantity}x ${getProductPrice(item.productId).toFixed(2)} | ${(getProductPrice(item.productId) * item.quantity).toFixed(2)}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div><strong>Total:</strong> ${receipt.total.toFixed(2)}</div>
       <div className="confirmation-message">

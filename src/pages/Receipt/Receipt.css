@@ -23,3 +23,14 @@
   transition: background 0.2s;
   display: inline-block;
 }
+
+.receipt-info {
+  text-align: left;
+}
+
+.confirmation-message {
+  text-align: center;
+  background: #e8e7e7;
+  margin-top: 10px;
+  padding-top: 10px;
+}

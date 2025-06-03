@@ -103,22 +103,27 @@ const ProductList: React.FC = () => {
           ) : (
             filtered.map((product) => (
               <div className="product-card" key={product.id}>
-                <Link to={`/product/${product.id}`}>
-                  <div>{product.name}</div>
+                <Link className="product-link" to={`/product/${product.id}`}>
+                  <div className="name">{product.name}</div>
+                </Link>
+                <div className="">
+
+                <Link className="product-link" to={`/product/${product.id}`}>
                   <img
                     src={`/images/${product.id}.webp`}
                     alt={product.name}
                     className="product-thumbnail"
-                  />
+                    />
                   <div className="price">${product.price.toFixed(2)}</div>
                   <div className="stock">({product.stock} in stock)</div>
                 </Link>
                 <button
                   className="add-button"
                   onClick={() => handleAddToCart(product.id)}
-                >
+                  >
                   Add to Cart
                 </button>
+                </div>
               </div>
             ))
           )}
