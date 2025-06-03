@@ -96,9 +96,11 @@ const ProductList = () => {
       ) : (
         filtered.map((product) => (
           <div className="product-card" key={product.id}>
-            <div>{product.name}</div>
-            <div className="price">${product.price.toFixed(2)}</div>
-            <div className="stock">({product.stock} in stock)</div>
+            <Link to={`/product/${product.id}`}>
+              <div>{product.name}</div>
+              <div className="price">${product.price.toFixed(2)}</div>
+              <div className="stock">({product.stock} in stock)</div>
+            </Link>
             <button
               className="add-button"
               onClick={() => handleAddToCart(product.id)}

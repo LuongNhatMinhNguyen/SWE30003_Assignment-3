@@ -43,9 +43,11 @@ export default class Home extends React.Component<{}, HomeState> {
           <h2>Featured Products</h2>
           <div className="featured-products">
             {this.featuredProducts.map((product) => (
-              <div key={product.id} className="product-card">
-                {product.name} - ${product.price.toFixed(2)}
-              </div>
+              <Link to={`/product/${product.id}`}>
+                <div className="product-card">
+                  {product.name} - ${product.price.toFixed(2)}
+                </div>
+              </Link>
             ))}
           </div>
           <Link to="/products" style={{ textDecoration: 'none' }}>
