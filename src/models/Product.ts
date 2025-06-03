@@ -4,6 +4,6 @@ export class Product {
     public name: string,
     public price: number,
     public stock: number, 
-    public desc: string[]
+    public desc?: string[]
   ) {}
 }
