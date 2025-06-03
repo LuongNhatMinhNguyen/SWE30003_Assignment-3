@@ -1,28 +1,128 @@
 [
-  { "id": "P001", "name": "Laptop", "price": 999.99, "stock": 10, "category": "Electronics", 
-    "desc":[
+  {
+    "id": "P001",
+    "name": "Lenovo Laptop",
+    "price": 999.99,
+    "stock": 13,
+    "category": "Laptop",
+    "desc": [
       "Sleek and lightweight design ideal for portability.",
       "Powerful processor and 16GB of RAM for multitasking.",
       "14-inch HD display with vibrant colour clarity.",
       "512GB SSD for fast storage and quick boot times.",
       "Up to 10 hours of battery life on a single charge."
-      ]},
-
-  { "id": "P002", "name": "Phone", "price": 499.99, "stock": 20, "category": "Electronics",
+    ]
+  },
+  {
+    "id": "P002",
+    "name": "Motorola",
+    "price": 499.99,
+    "stock": 6,
+    "category": "Phone",
     "desc": [
       "6.5-inch high-resolution touchscreen display.",
       "Dual-camera system with advanced photo modes.",
       "Fast processor and 5G connectivity.",
       "128GB storage with expandable memory option.",
       "Fingerprint scanner and facial recognition security."
-      ]},
-
-  { "id": "P003", "name": "Tablet", "price": 299.99, "stock": 15, "category": "Electronics",
+    ]
+  },
+  {
+    "id": "P003",
+    "name": "Microsoft Surface",
+    "price": 299.99,
+    "stock": 11,
+    "category": "Tablets",
     "desc": [
-     "10-inch full HD screen perfect for movies and reading.",
+      "10-inch full HD screen perfect for movies and reading.",
       "Lightweight and easy to carry on the go.",
       "Supports stylus input for drawing and note-taking.",
       "Quad-speaker setup for rich audio experience.",
       "Long battery life and fast USB-C charging."
-      ]}
+    ]
+  },
+  {
+    "id": "P004",
+    "name": "Apple iPhone 16 Pro",
+    "price": 1587.00,
+    "stock": 17,
+    "category": "Phone",
+    "desc": [
+      "6.7-inch Super Retina XDR display with ProMotion.",
+      "Triple-lens camera system with LiDAR for night mode portraits.",
+      "A17 Bionic chip for unmatched speed and efficiency.",
+      "Dynamic Island for seamless multitasking.",
+      "Ceramic Shield and water resistance for durability."
+    ]
+  },
+  {
+    "id": "P005",
+    "name": "Samsung Galaxy S25 Ultra",
+    "price": 2337.00,
+    "stock": 3,
+    "category": "Phone",
+    "desc": [
+      "6.8-inch QHD+ AMOLED display with 120Hz refresh rate.",
+      "Quad camera system with 200MP main sensor.",
+      "S Pen included for precision input.",
+      "1TB storage option and 5G connectivity.",
+      "Massive battery with ultra-fast charging support."
+    ]
+  },
+  {
+    "id": "P006",
+    "name": "Apple iPad Air",
+    "price": 1197.00,
+    "stock": 19,
+    "category": "Tablets",
+    "desc": [
+      "10.9-inch Liquid Retina display with True Tone.",
+      "M2 chip for blazing-fast performance and multitasking.",
+      "Supports Apple Pencil and Magic Keyboard.",
+      "All-day battery life for work and play.",
+      "Advanced 12MP front and rear cameras for video calls and photos."
+    ]
+  },
+  {
+    "id": "P007",
+    "name": "Dyson V8 Handstick Vacuum",
+    "price": 799.00,
+    "stock": 5,
+    "category": "Vacuums",
+    "desc": [
+      "Cord-free and lightweight design for easy maneuvering.",
+      "Up to 40 minutes of fade-free suction power.",
+      "Powerful motor for deep cleaning on carpets and hard floors.",
+      "Easily converts to a handheld for quick spot cleans.",
+      "Includes multiple attachments for versatile use."
+    ]
+  },
+  {
+    "id": "P008",
+    "name": "Eufy Clean Robovac L60 SES with Auto Empty Station",
+    "price": 499.00,
+    "stock": 8,
+    "category": "Vacuums",
+    "desc": [
+      "Smart navigation with laser mapping for efficient cleaning.",
+      "Auto-empty base for hands-free dirt disposal.",
+      "Quiet operation and strong suction for all floor types.",
+      "Wi-Fi connectivity with app and voice control support.",
+      "Ideal for pet hair and daily maintenance cleaning."
+    ]
+  },
+  {
+    "id": "P009",
+    "name": "Dyson V15s Detect Submarine",
+    "price": 999.00,
+    "stock": 2,
+    "category": "Vacuums",
+    "desc": [
+      "Detects and highlights hidden dust with laser tech.",
+      "Advanced filtration traps 99.99% of microscopic particles.",
+      "Submarine wet roller head for vacuuming and mopping.",
+      "LCD screen shows real-time performance stats.",
+      "Run time up to 60 minutes with smart battery management."
+    ]
+  }
 ]
