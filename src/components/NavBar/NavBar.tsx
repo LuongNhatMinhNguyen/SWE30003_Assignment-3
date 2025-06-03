@@ -31,7 +31,7 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-        <div className="navbar-brand"><Link to='/' >AWE Electronics</Link></div>
+        <div className="navbar-brand"><Link className="navbar-brand-link" to='/' onMouseEnter={() => setHovered('navbar-brand')} onMouseLeave={() => setHovered(null)} >AWE Electronics</Link></div>
         <div className="navbar-links">
           {navLinks.map((link) => (
             <Link
