@@ -31,7 +31,6 @@ export default class Home extends React.Component<{}, HomeState> {
   render() {
     return (
       <div className="home-container">
-        <NavBar />
 
         {/* Main Section */}
         <main className="home-main">
@@ -53,8 +52,6 @@ export default class Home extends React.Component<{}, HomeState> {
             <button className="shop-now-button">Shop Now</button>
           </Link>
         </section>
-
-        <Footer />
       </div>
     );
   }

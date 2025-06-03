@@ -8,6 +8,8 @@ import Login from './pages/Login/Login';
 import Cart from './pages/Cart/Cart';
 import Checkout from './Checkout';
 import Profile from './Profile';
+import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
 
 const Placeholder: React.FC = () => (
   <div style={{ textAlign: 'center', padding: '60px 0' }}>
@@ -19,6 +21,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
+        <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -28,6 +31,7 @@ const App: React.FC = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        <Footer/>
       </div>
     </BrowserRouter>
   );
