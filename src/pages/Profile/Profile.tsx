@@ -4,6 +4,7 @@ import { Customer } from "../../models/Customer";
 import { Order } from "../../models/Order";
 import { Receipt } from "../../models/Receipt";
 import { Product } from "../../models/Product";
+import "./Profile.css";
 
 const Profile: React.FC = () => {
   const [customer, setCustomer] = useState<Customer | null>(null);
@@ -48,13 +49,13 @@ const Profile: React.FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('awe_logged_in');
-    window.location.href = '/login';
+    localStorage.removeItem("awe_logged_in");
+    window.location.href = "/login";
   };
 
   if (!customer) {
     return (
-      <div style={{ padding: 40, textAlign: "center" }}>
+      <div className="profile-container">
         <h2>Profile</h2>
         <p>Please log in to view your profile and receipts.</p>
       </div>
@@ -62,55 +63,48 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f5f5f5", padding: 24 }}>
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 8,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-          padding: 24,
-          maxWidth: 600,
-          margin: "0 auto 32px auto",
-        }}
-      >
-        <h2 style={{ color: "#1976d2" }}>Profile</h2>
+    <div className="profile-container">
+      <div className="profile-card">
+        <h2 className="profile-heading">Profile</h2>
         <div>
-          <strong style={{ color: "#000" }}>Name:</strong> <span style={{ color: "#000" }}>{customer.name}</span>
+          <span className="profile-label">Name:</span>{" "}
+          <span className="profile-value">{customer.name}</span>
         </div>
         <div>
-          <strong style={{ color: "#000" }}>Email:</strong> <span style={{ color: "#000" }}>{customer.email}</span>
+          <span className="profile-label">Email:</span>{" "}
+          <span className="profile-value">{customer.email}</span>
         </div>
         <div>
-          <strong style={{ color: "#000" }}>Address:</strong> <span style={{ color: "#000" }}>{customer.address}</span>
+          <span className="profile-label">Address:</span>{" "}
+          <span className="profile-value">{customer.address}</span>
+        </div>
+        <div>
+          <span className="profile-label">City:</span>{" "}
+          <span className="profile-value">{customer.city}</span>
+        </div>
+        <div>
+          <span className="profile-label">Postcode:</span>{" "}
+          <span className="profile-value">{customer.postcode}</span>
+        </div>
+        <div className="edit-button-container">
+          <button
+            onClick={() => navigate("/profile/details")}
+            className="edit-button"
+          >
+          Edit Details
+          </button>
         </div>
       </div>
 
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 8,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-          padding: 24,
-          maxWidth: 600,
-          margin: "0 auto",
-        }}
-      >
-        <h3 style={{ color: "#222" }}>Your Receipts</h3>
+      <div className="receipts-card">
+        <h3>Your Receipts</h3>
         {receipts.length === 0 ? (
-          <div style={{ color: "#888" }}>No receipts found.</div>
+          <div className="no-receipts">No receipts found.</div>
         ) : (
           receipts.map((receipt) => {
             const order = getOrder(receipt.orderId);
             return (
-              <div
-                key={receipt.id}
-                style={{
-                  borderBottom: "1px solid #eee",
-                  marginBottom: 18,
-                  paddingBottom: 12,
-                  color: "#000",
-                }}
-              >
+              <div className="receipt" key={receipt.id}>
                 <div>
                   <strong>Receipt ID:</strong> {receipt.id}
                 </div>
@@ -118,18 +112,20 @@ const Profile: React.FC = () => {
                   <strong>Order ID:</strong> {receipt.orderId}
                 </div>
                 <div>
-                  <strong>Date:</strong> {new Date(receipt.date).toLocaleString()}
+                  <strong>Date:</strong>{" "}
+                  {new Date(receipt.date).toLocaleString()}
                 </div>
                 <div>
                   <strong>Total:</strong> ${receipt.total.toFixed(2)}
                 </div>
                 {order && (
-                  <div style={{ marginTop: 6 }}>
+                  <div className="receipt-items">
                     <strong>Items:</strong>
-                    <ul style={{ margin: 0, paddingLeft: 18 }}>
+                    <ul>
                       {order.items.map((item, idx) => (
                         <li key={idx}>
-                          {getProductName(item.productId)} (ID: {item.productId}), Quantity: {item.quantity}
+                          {getProductName(item.productId)} (ID: {item.productId}
+                          ), Quantity: {item.quantity}
                         </li>
                       ))}
                     </ul>
@@ -140,42 +136,12 @@ const Profile: React.FC = () => {
           })
         )}
       </div>
-      <div style={{ textAlign: "center", marginTop: 32 }}>
-        <a
-          href="/"
-          style={{
-            background: "#666",
-            color: "#fff",
-            padding: "10px 20px",
-            borderRadius: "5px",
-            textDecoration: "none",
-            fontWeight: 500,
-            transition: "background 0.2s",
-            display: "inline-block",
-          }}
-          onMouseOver={e => (e.currentTarget.style.background = "#444")}
-          onMouseOut={e => (e.currentTarget.style.background = "#666")}
-        >
+
+      <div className="profile-footer">
+        <a href="/" className="back-button">
           Back to Home
         </a>
-        <button
-          onClick={handleLogout}
-          style={{
-            marginTop: 16,
-            background: '#d32f2f',
-            color: '#fff',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            border: 'none',
-            fontWeight: 500,
-            cursor: 'pointer',
-            transition: 'background 0.2s',
-            display: 'inline-block',
-            marginLeft: 8,
-          }}
-          onMouseOver={e => (e.currentTarget.style.background = '#b71c1c')}
-          onMouseOut={e => (e.currentTarget.style.background = '#d32f2f')}
-        >
+        <button onClick={handleLogout} className="logout-button">
           Log Out
         </button>
       </div>
