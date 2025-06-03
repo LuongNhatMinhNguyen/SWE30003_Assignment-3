@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Customer } from "./models/Customer";
-import { Order } from "./models/Order";
-import { Receipt } from "./models/Receipt";
-import { Product } from "./models/Product";
+import { Customer } from "../../models/Customer";
+import { Order } from "../../models/Order";
+import { Receipt } from "../../models/Receipt";
+import { Product } from "../../models/Product";
 
 const Profile: React.FC = () => {
   const [customer, setCustomer] = useState<Customer | null>(null);

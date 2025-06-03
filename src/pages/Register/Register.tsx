@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Customer } from '../models/Customer';
+import { Customer } from '../../models/Customer';
 import { v4 as uuidv4 } from 'uuid'; // For unique customer IDs (install with npm i uuid @types/uuid)
 
 const inputStyle: React.CSSProperties = {

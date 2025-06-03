@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home/Home';
 import ProductList from './pages/ProductList/ProductList';
-import Register from './pages/Register';
+import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Cart from './pages/Cart/Cart';
-import Checkout from './Checkout';
-import Profile from './Profile';
+import Checkout from './pages/Checkout/Checkout';
+import Profile from './pages/Profile/Profile';
 import NavBar from './components/NavBar/NavBar'
 import Footer from './components/Footer/Footer'
 
