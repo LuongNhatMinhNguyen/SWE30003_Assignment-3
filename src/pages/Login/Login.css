@@ -60,4 +60,12 @@ font-weight: 500;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: 500;
-}  
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}

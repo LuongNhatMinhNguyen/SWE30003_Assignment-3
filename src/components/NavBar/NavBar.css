@@ -12,6 +12,7 @@
     font-size: 1.5rem;
     letter-spacing: 1px;
     text-decoration: none;
+    color: white;
   }
   
   .navbar-links {
@@ -30,8 +31,21 @@
     transition: border-bottom 0.2s, color 0.2s;
   }
   
-  .navbar-link.hovered {
-    text-decoration: underline;
+  .navbar-link.hovered, .navbar-brand-link.hovered, .navbar-brand-link:hover {
+    text-decoration: none;
     border-bottom: 2px solid #fff;
+    color: white;
   }
   
+  a {
+    text-decoration: none;
+  }
+
+  .navbar-brand-link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s, color 0.2s;
+  }
