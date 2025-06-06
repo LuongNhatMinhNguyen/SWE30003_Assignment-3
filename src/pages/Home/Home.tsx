@@ -15,9 +15,9 @@ type HomeState = {
 
 export default class Home extends React.Component<{}, HomeState> {
   featuredProducts: Product[] = [
-    new Product('P001', 'Laptop', 999.99, 10),
-    new Product('P002', 'Phone', 499.99, 20),
-    new Product('P003', 'Tablet', 299.99, 15),
+    new Product('P001', 'Lenovo Laptop', 999.99, 10),
+    new Product('P004', 'Apple iPhone 16 Pro', 1587.00, 20),
+    new Product('P003', 'Microsoft Surface', 299.99, 15),
   ];
 
   constructor(props: {}) {
